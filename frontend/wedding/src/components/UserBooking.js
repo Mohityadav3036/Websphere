@@ -320,9 +320,6 @@
 
 
 
-
-
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
@@ -425,6 +422,7 @@ function UserBooking() {
                 [bookingId]: newStatus === "Pending" || newStatus === "Confirmed",
             }));
 
+            // Open the review box if the status is "Completed"
             if (newStatus === "Completed") {
                 setShowReviewBox(true);
                 setSelectedBookingId(bookingId);
@@ -465,7 +463,7 @@ function UserBooking() {
         }
     };
 
-    const handleSubmitReview = async (serviceId) => {
+    const handleSubmitReview = async () => {
         try {
             if (!reviewText.trim()) {
                 toast("Review cannot be empty.");
@@ -480,7 +478,7 @@ function UserBooking() {
 
             const response = await axios.post(
                 `${process.env.REACT_APP_API_URL}/review/add`,
-                { serviceId, reviewText, rating },
+                { serviceId: selectedServiceId, reviewText, rating },
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -563,6 +561,45 @@ function UserBooking() {
                     </div>
                 )}
             </div>
+
+            {/* Review Box */}
+            {showReviewBox && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 sm:p-0">
+                    <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg w-full max-w-lg relative">
+                        <button
+                            className="absolute top-2 right-2 text-gray-600 hover:text-black text-2xl"
+                            onClick={() => setShowReviewBox(false)}
+                        >
+                            &times;
+                        </button>
+                        <h2 className="text-lg sm:text-xl font-bold mb-4 text-center">Write a Review</h2>
+                        <textarea
+                            className="w-full p-2 border rounded-lg h-24"
+                            placeholder="Write your review..."
+                            value={reviewText}
+                            onChange={(e) => setReviewText(e.target.value)}
+                        />
+                        <div className="flex justify-center my-3 sm:my-4">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                                <FaStar
+                                    key={star}
+                                    className={`text-xl sm:text-3xl cursor-pointer transition-colors ${
+                                        star <= rating ? "text-yellow-500" : "text-gray-300"
+                                    }`}
+                                    onClick={() => setRating(star)}
+                                />
+                            ))}
+                        </div>
+                        <button
+                            className="bg-blue-600 text-white px-4 py-2 mt-2 rounded-lg w-full hover:bg-blue-700 transition"
+                            onClick={handleSubmitReview}
+                        >
+                            Submit Review
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <Footer />
         </div>
     );
