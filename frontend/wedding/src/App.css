@@ -1,0 +1,99 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Add to your styles.css or within the <style> tag */
+/* Add to your styles.css or within the <style> tag */
+@keyframes moveText {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  20% {
+    width: 20%;
+    opacity: 1;
+  }
+  40% {
+    width: 40%;
+    opacity: 1;
+  }
+  60% {
+    width: 60%;
+    opacity: 1;
+  }
+  80% {
+    width: 80%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+  120% {
+    width: 100%;
+    opacity: 1;
+  }
+  140% {
+    width: 80%;
+    opacity: 1;
+  }
+  160% {
+    width: 60%;
+    opacity: 1;
+  }
+  180% {
+    width: 40%;
+    opacity: 1;
+  }
+  200% {
+    width: 20%;
+    opacity: 1;
+  }
+  220% {
+    width: 0%;
+    opacity: 0;
+  }
+}
+
+.animate-text {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: moveText 7s infinite;
+  width: 100%;
+}
