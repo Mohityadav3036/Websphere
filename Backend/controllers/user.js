@@ -242,7 +242,7 @@ const updateUserProfile = async (req, res) => {
     try {
         const userId = req.user.id; // Assumes user ID is set by the auth middleware
      
-     
+        
         // Fetch all bookings for the authenticated user
         const bookings = await Booking.find({ user: userId })
             .populate('service', 'name description') // Populate service details (e.g., name, description)
