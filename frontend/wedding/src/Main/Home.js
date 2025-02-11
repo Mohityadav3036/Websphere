@@ -55,7 +55,6 @@
 
 
 
-
 import React from 'react';
 import ImageSlider from './ImageSlider.js';
 import mainimage from '../images/bghome.jpg';
